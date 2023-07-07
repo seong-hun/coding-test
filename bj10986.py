@@ -1,18 +1,9 @@
 import sys
-input = sys.stdin.readline
+import math
 
-N, M = map(int, input().split())
-A = list(map(int, input().split()))
-
-count = [0] * M
-count[(sum := 0)] = 1
-
-for a in A:
-    count[(sum := (sum + a) % M)] += 1
-
-sum = 0
-for c in count:
-    sum += c * (c-1)/2
-
-print(int(sum))
-
+n, m, *nums = map(int, sys.stdin.read().rstrip().split())
+counter = [0] * m
+counter[s := 0] = 1
+for num in nums:
+    counter[s := (s + num) % m] += 1
+print(sum(math.comb(i, 2) for i in counter))
